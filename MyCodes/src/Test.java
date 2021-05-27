@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Test {
 
@@ -12,32 +12,32 @@ public class Test {
 				a[i][j] = sc.nextInt();
 			}
 		}
-		int count = 0;
-		int tle = n * m;
-		int minr = 0, minc = 0, maxc = m - 1, maxr = n - 1;
-		while (count < tle) {
-			for (int i = minc, j = minr; i <= maxc && count < tle; i++) {
-				System.out.print(a[j][i] + " ");
-				count++;
+		int i = 0, j = 0, dir = 0;
+		while (true) {
+			dir = (dir + a[i][j]) % 4;
+			if (dir == 0) {
+				j++;
+			} else if (dir == 1) {
+				i++;
+			} else if (dir == 2) {
+				j--;
+			} else if (dir == 3) {
+				i--;
 			}
-			minr++;
-			for (int i = minr, j = maxc; i <= maxr && count < tle; i++) {
-				System.out.print(a[i][j] + " ");
-				count++;
+			if (i < 0) {
+				i++;
+				break;
+			} else if (j < 0) {
+				j++;
+				break;
+			} else if (i == a.length) {
+				i--;
+				break;
+			} else if (j == a[0].length) {
+				j--;
+				break;
 			}
-			maxc--;
-			for (int i = maxc, j = maxr; i >= minc && count < tle; i--) {
-				System.out.print(a[j][i] + " ");
-				count++;
-			}
-			maxr--;
-			for (int i = maxr, j = minc; i>=minr && count<tle; i--) {
-				System.out.print(a[i][j] + " ");
-				count++;
-			}
-			minc++;
-			
-			
 		}
+		System.out.println(i + " " + j);
 	}
 }
