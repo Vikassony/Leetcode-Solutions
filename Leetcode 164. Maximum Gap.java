@@ -1,3 +1,4 @@
+// O(nlogn) Solution
 class Solution {
     public int maximumGap(int[] nums) {
         if(nums.length==0 || nums.length==1)
